@@ -5,19 +5,19 @@
   
 
   
-  <title>docker常用命令 | Hexo</title>
+  <title>sql笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="提交改动到镜像  docker commit -a &amp;quot;runoob.com&amp;quot; -m &amp;quot;my apache&amp;quot; a404c6c174a2  mymysql:v1 -a :提交的镜像作者； -c :使用Dockerfile指令来创建镜像； -m :提交时的说明文字； -p :在commit时，将容器暂停。   打包镜像成tar包  docker save -o">
+  <meta name="description" content="mysql备份某个表：-u username -p databasename table1, table2... &amp;gt; backupname.sql```12### mysql备份某个数据库：```mysqldump -u username -p databasename &amp;gt; backupname.sql  mysql还原数据：-u username -p database &amp;lt; backupn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker常用命令">
-<meta property="og:url" content="http://yoursite.com/2019/07/11/docker/index.html">
+<meta property="og:title" content="sql笔记">
+<meta property="og:url" content="http://yoursite.com/2019/07/11/sql笔记/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="提交改动到镜像  docker commit -a &amp;quot;runoob.com&amp;quot; -m &amp;quot;my apache&amp;quot; a404c6c174a2  mymysql:v1 -a :提交的镜像作者； -c :使用Dockerfile指令来创建镜像； -m :提交时的说明文字； -p :在commit时，将容器暂停。   打包镜像成tar包  docker save -o">
+<meta property="og:description" content="mysql备份某个表：-u username -p databasename table1, table2... &amp;gt; backupname.sql```12### mysql备份某个数据库：```mysqldump -u username -p databasename &amp;gt; backupname.sql  mysql还原数据：-u username -p database &amp;lt; backupn">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-11T08:05:00.570Z">
+<meta property="og:updated_time" content="2019-07-11T08:08:12.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker常用命令">
-<meta name="twitter:description" content="提交改动到镜像  docker commit -a &amp;quot;runoob.com&amp;quot; -m &amp;quot;my apache&amp;quot; a404c6c174a2  mymysql:v1 -a :提交的镜像作者； -c :使用Dockerfile指令来创建镜像； -m :提交时的说明文字； -p :在commit时，将容器暂停。   打包镜像成tar包  docker save -o">
+<meta name="twitter:title" content="sql笔记">
+<meta name="twitter:description" content="mysql备份某个表：-u username -p databasename table1, table2... &amp;gt; backupname.sql```12### mysql备份某个数据库：```mysqldump -u username -p databasename &amp;gt; backupname.sql  mysql还原数据：-u username -p database &amp;lt; backupn">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-docker" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-sql笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/11/docker/" class="article-date">
-  <time datetime="2019-07-11T08:04:15.000Z" itemprop="datePublished">2019-07-11</time>
+    <a href="/2019/07/11/sql笔记/" class="article-date">
+  <time datetime="2019-07-11T08:07:53.000Z" itemprop="datePublished">2019-07-11</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      docker常用命令
+      sql笔记
     </h1>
   
 
@@ -86,59 +86,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p>提交改动到镜像</p>
-<ul>
-<li><code>docker commit -a &quot;runoob.com&quot; -m &quot;my apache&quot; a404c6c174a2  mymysql:v1</code></li>
-<li>-a :提交的镜像作者；</li>
-<li>-c :使用Dockerfile指令来创建镜像；</li>
-<li>-m :提交时的说明文字；</li>
-<li>-p :在commit时，将容器暂停。</li>
-</ul>
-</li>
-<li><p>打包镜像成tar包</p>
-<ul>
-<li>docker save -o 要保存的文件名.tar 要保存的镜像</li>
-<li>docker save 要保存的镜像 &gt; 要保存的文件名.tar</li>
-</ul>
-</li>
-<li><p>load tar文件，恢复成镜像</p>
-<ul>
-<li>docker load &lt; 文件名.tar</li>
-</ul>
-</li>
-<li><p>重命名镜像</p>
-<ul>
-<li>docker tag IMAGEID(镜像id) REPOSITORY:TAG（仓库：标签）</li>
-</ul>
-</li>
-<li><p>重命名容器</p>
-<ul>
-<li>docker rename old_app new_app</li>
-</ul>
-</li>
-<li><p>运行docker容器</p>
-<ul>
-<li>docker run -dit -p0.0.0.0:6004:6004 –name=dk-trainer 容器id /bin/bash</li>
-</ul>
-</li>
-<li><p>容器外执行容器里面的动作</p>
-<ul>
-<li>docker exec -dit inspection_math /bin/bash -c ‘cd /var/flask/; sh ./init.sh’</li>
-</ul>
-</li>
-<li><p>执行supervisord以及运行docker时注入环境变量</p>
-<ul>
-<li>docker exec -it dk-dashboardv2.0 /bin/bash -c ‘supervisord -n’</li>
-<li>docker run -dit -p0.0.0.0:8080:8080 –env-file /Users/mark/Developer/dashboard.env –name=dk-dashboardv2.0 dk-dashboard:v2.0  /bin/bash</li>
-</ul>
-</li>
-</ul>
+        <h3 id="mysql备份某个表："><a href="#mysql备份某个表：" class="headerlink" title="mysql备份某个表："></a>mysql备份某个表：</h3><figure class="highlight plain"><figcaption><span>-u username -p databasename table1, table2... > backupname.sql```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### mysql备份某个数据库：</span><br><span class="line">```mysqldump -u username -p databasename &gt; backupname.sql</span><br></pre></td></tr></table></figure>
 
+<h3 id="mysql还原数据："><a href="#mysql还原数据：" class="headerlink" title="mysql还原数据："></a>mysql还原数据：</h3><figure class="highlight plain"><figcaption><span>-u username -p database < backupname.sql```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### mac mysql配置文件</span><br><span class="line">```/usr/local/etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建数据库一定要使用utf8"><a href="#创建数据库一定要使用utf8" class="headerlink" title="创建数据库一定要使用utf8"></a>创建数据库一定要使用utf8</h3><figure class="highlight plain"><figcaption><span>database db_name default charset utf8;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 创建test用户并授权db_name数据库给该用户并设置密码为123</span><br><span class="line">```GRANT ALL PRIVILEGES ON db_name.* TO &apos;test&apos;@&apos;%&apos; IDENTIFIED BY &apos;123&apos;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/11/docker/" data-id="cjxye6c030001hes10bkj1w59" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/11/sql笔记/" data-id="cjxye6bzy0000hes1djlalyoi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -147,19 +103,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/07/11/flask笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          flask笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/11/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/07/11/flask笔记/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">flask笔记</div>
     </a>
   
 </nav>

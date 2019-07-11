@@ -62,6 +62,118 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-sql笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/11/sql笔记/" class="article-date">
+  <time datetime="2019-07-11T08:07:53.000Z" itemprop="datePublished">2019-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/11/sql笔记/">sql笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="mysql备份某个表："><a href="#mysql备份某个表：" class="headerlink" title="mysql备份某个表："></a>mysql备份某个表：</h3><figure class="highlight plain"><figcaption><span>-u username -p databasename table1, table2... > backupname.sql```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### mysql备份某个数据库：</span><br><span class="line">```mysqldump -u username -p databasename &gt; backupname.sql</span><br></pre></td></tr></table></figure>
+
+<h3 id="mysql还原数据："><a href="#mysql还原数据：" class="headerlink" title="mysql还原数据："></a>mysql还原数据：</h3><figure class="highlight plain"><figcaption><span>-u username -p database < backupname.sql```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### mac mysql配置文件</span><br><span class="line">```/usr/local/etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建数据库一定要使用utf8"><a href="#创建数据库一定要使用utf8" class="headerlink" title="创建数据库一定要使用utf8"></a>创建数据库一定要使用utf8</h3><figure class="highlight plain"><figcaption><span>database db_name default charset utf8;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 创建test用户并授权db_name数据库给该用户并设置密码为123</span><br><span class="line">```GRANT ALL PRIVILEGES ON db_name.* TO &apos;test&apos;@&apos;%&apos; IDENTIFIED BY &apos;123&apos;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/11/sql笔记/" data-id="cjxye6bzy0000hes1djlalyoi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-flask笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/11/flask笔记/" class="article-date">
+  <time datetime="2019-07-11T08:07:00.000Z" itemprop="datePublished">2019-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/11/flask笔记/">flask笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="在使用flask-migrate的时候在使用"><a href="#在使用flask-migrate的时候在使用" class="headerlink" title="在使用flask_migrate的时候在使用"></a>在使用flask_migrate的时候在使用<figure class="highlight python"><figcaption><span>manage.py db migrate```的时候无法生成migrations/versions/表里面的迁移脚本</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- ```INFO  [alembic.env] No changes <span class="keyword">in</span> schema detected</span><br></pre></td></tr></table></figure></h3><ul>
+<li><p>可能有两个原因：</p>
+<ul>
+<li><p>1。数据库中有alembic_version表，需要先删除再生成迁移脚本，不然不会生成表结构，因为你的情况可能是删除了其他表<br>并在没有更改models里面的orm关系时再启动命令，此时会检查到该表里面的版本信息没有改变，就不会再次重新生成了。</p>
+</li>
+<li><p>2。（当前我遇到的问题）：仅仅以为在models表中关联了db就可以被自动检测到orm映射关系的代码，其实还需要在manage.py<br>或db初始化的文件中我这里用的是项目的<strong>init</strong>.py导入该models里面的类，example<figure class="highlight plain"><figcaption><span>models import *```这样操作之后就可以生成</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    迁移脚本，并利用flask_migrate生成表结构。</span><br><span class="line"></span><br><span class="line">### 在flask非视图函数中执行查询数据库的操作时（常用于开启线程异步操作耗时间的数据库查询动作）</span><br><span class="line">  - ```&apos;No application found. Either work inside a view function or push&apos;</span><br><span class="line">RuntimeError: No application found. Either work inside a view function or push an application context. See http://flask-sqlalchemy.pocoo.org/contexts/.</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>1：主要原因是需要直接实例化app 不要写create_app函数了，在启动文件中直接导入app对象。</p>
+<ul>
+<li><p>1.1：很多人是这样写init文件的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">def create_app():</span><br><span class="line">  app = Flask(__name__)</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1.2：然后再manage启动文件导入create_app</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from app import create_app,db</span><br><span class="line">app = create_app()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这样写后只能在视图函数中执行数据库的操作了</li>
+<li>正确的做法是直接在init文件中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 再在manage文件中直接导入</span><br><span class="line">  ```from app import app</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>2.1：示例化db时不能使用：</p>
+<ul>
+<li><code>db = SQLAlchemy() db.init_app(app)</code></li>
+</ul>
+</li>
+<li><p>2.2：应该使用：</p>
+<ul>
+<li><code>db = SQLAlchemy(app)</code>直接示例化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/11/flask笔记/" data-id="cjxye6c050002hes1ayzmmosh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-docker" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/11/docker/" class="article-date">
@@ -136,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/11/docker/" data-id="cjxye06p80000f4s1aptapqtp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/11/docker/" data-id="cjxye6c030001hes10bkj1w59" class="article-share-link">Share</a>
       
       
     </footer>
@@ -185,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/11/hello-world/" data-id="cjxye06pd0001f4s1uvifvnoz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/11/hello-world/" data-id="cjxye6c070003hes1wbvvh63n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -224,6 +336,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/07/11/sql笔记/">sql笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/11/flask笔记/">flask笔记</a>
+          </li>
         
           <li>
             <a href="/2019/07/11/docker/">docker常用命令</a>
