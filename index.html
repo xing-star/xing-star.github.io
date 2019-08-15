@@ -1304,16 +1304,19 @@
       
         
           
-            <h3 id="查看防火墙状态"><a href="#查看防火墙状态" class="headerlink" title="查看防火墙状态"></a>查看防火墙状态</h3><figure class="highlight plain"><figcaption><span>--state```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 停止firewall</span><br><span class="line">```systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+            <h3 id="查看Centos版本"><a href="#查看Centos版本" class="headerlink" title="查看Centos版本"></a>查看Centos版本</h3><figure class="highlight plain"><figcaption><span>/etc/redhat-release```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 查看防火墙状态</span><br><span class="line">```firewall-cmd --state</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>禁止firewall开机启动<figure class="highlight plain"><figcaption><span>disable firewalld.service```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### SCP复制文件</span><br><span class="line">```scp local_file remote_username@remote_ip:remote_folder</span><br></pre></td></tr></table></figure>
+<li>停止firewall<figure class="highlight plain"><figcaption><span>stop firewalld.service```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 禁止firewall开机启动</span><br><span class="line">```systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h3 id="tar解压文件"><a href="#tar解压文件" class="headerlink" title="tar解压文件"></a>tar解压文件</h3><figure class="highlight plain"><figcaption><span>xvf *.gz文件```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 给文件夹开放所有权限</span><br><span class="line">```chmod -R 777 文件夹路径</span><br></pre></td></tr></table></figure>
+<h3 id="SCP复制文件"><a href="#SCP复制文件" class="headerlink" title="SCP复制文件"></a>SCP复制文件</h3><figure class="highlight plain"><figcaption><span>local_file remote_username@remote_ip:remote_folder```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### tar解压文件</span><br><span class="line">```tar xvf *.gz文件</span><br></pre></td></tr></table></figure>
 
+<h3 id="给文件夹开放所有权限"><a href="#给文件夹开放所有权限" class="headerlink" title="给文件夹开放所有权限"></a>给文件夹开放所有权限</h3><figure class="highlight plain"><figcaption><span>-R 777 文件夹路径```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 设置crontab定时任务</span><br><span class="line">    1。```crontab -e #编辑定时任务</span><br></pre></td></tr></table></figure>
 
+<pre><code>2。```crontab -l #列出当前所有的定时任务```
+eg: ```35 6 1 * * ls #表示每个月1号的6点35分执行ls命令，从左到右分别是分，时，日，月，年``` </code></pre>
           
         
       
